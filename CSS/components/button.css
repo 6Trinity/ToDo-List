@@ -13,6 +13,12 @@
     height: 35px;
     width: 80px;
     margin: 0 0.3em 0.5em 0 ;
+    transition: all 0.2s ease;
+    box-shadow: 0 0.5px 2px #272727;
+}
+
+#button-task-add:hover{
+    border: 1px solid #fff;
 }
 
 .delete-btn{
@@ -35,6 +41,19 @@
     position: absolute;
     background: var(--HighlightColor);
     right: 0;
+    border: 1px solid var(--HighlightColor);
+    cursor: pointer;
+    border-radius: 15px 0 0 15px;
+}
+
+.btn-complete{
+    width: 40px;
+    min-height: 50px;
+    margin-right: 40px;
+    height: 100%;
+    position: absolute;
+    background: var(--HighlightColor);
+    left: 0;
     border: 1px solid var(--HighlightColor);
     cursor: pointer;
     border-radius: 15px 0 0 15px;

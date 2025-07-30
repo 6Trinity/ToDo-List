@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const databox = document.getElementById('Section-task-add-calendar');
+
     function updateDate() {
         const today = new Date();
         const weekdays = ['Sunday ', 'Monday', 'Tuesday ', 'Wednesday ', 'Thursday ', 'Friday ', 'Saturday '];
         const dayName = weekdays[today.getDay()];
         const options = { day: 'numeric', month: 'long'};
+
         databox.textContent = `${dayName + today.toLocaleDateString('en-EN', options)}`;
     }
 
@@ -16,11 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const addButton = document.getElementById('button-task-add');
     const taskList = document.getElementById('Section-task-scroll-content');
 
+    const taskcolum = document.getElementById('Section-task-add-task');
+
     loadTasks();
-
-    function dablclick(){
-
-    }
 
     function loadTasks() {
         const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -30,12 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 taskElement.classList.add('dablclick');
             }
         });
+        taskcolum.textContent = document.querySelectorAll('.task:not(.dablclick)').length;
     }
 
     function createTaskElement(taskText) {
         const taskElement = document.createElement('div');
         taskElement.className = 'task';
-        taskElement.innerHTML = `<span class="task-text">${taskText}</span>
+        taskElement.innerHTML = `<button class="btn-complete"><img src="IMG/Icon/check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <span class="task-text">${taskText}</span>
         <input type="text" class="task-edit" value="${taskText}" style="display: none;">
         <button class="delete-btn"><img src="IMG/Icon/delete_forever_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
         <button class="btn-edit"><img src="IMG/Icon/edit_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>`;
@@ -43,13 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const textSpan = taskElement.querySelector('.task-text');
         const editInput = taskElement.querySelector('.task-edit');
         const editBtn = taskElement.querySelector('.btn-edit');
+        const comBtn = taskElement.querySelector('.btn-complete');
   
         taskList.appendChild(taskElement);
 
-        taskElement.addEventListener('dblclick', function() {
-            this.classList.toggle('dablclick');
+        function toggleTaskCompletion(task) {
+            task.classList.toggle('dablclick');
             saveTasksToStorage();
-        });
+        }
+
+        taskElement.addEventListener('dblclick', () => toggleTaskCompletion(taskElement));
+        comBtn.addEventListener('click', () => toggleTaskCompletion(taskElement));
   
         taskElement.querySelector('.delete-btn').addEventListener('click', () => {
             taskElement.remove();
@@ -88,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             text: task.querySelector('span').textContent,
             dablclick: task.classList.contains('dablclick')
         }));
-
+        taskcolum.textContent = document.querySelectorAll('.task:not(.dablclick)').length;
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }  
 
