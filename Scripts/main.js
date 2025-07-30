@@ -60,4 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
             taskInput.value = '';
         }
     });
+
+    taskInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            addButton.click();
+        }
+    });
 });
