@@ -18,36 +18,77 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loadTasks();
 
+    function dablclick(){
+
+    }
+
     function loadTasks() {
         const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        savedTasks.forEach(taskText => {
-            createTaskElement(taskText);
+        savedTasks.forEach(task => {
+            const taskElement = createTaskElement(task.text);
+             if (task.dablclick) {
+                taskElement.classList.add('dablclick');
+            }
         });
     }
 
     function createTaskElement(taskText) {
         const taskElement = document.createElement('div');
         taskElement.className = 'task';
-        taskElement.innerHTML = `<span>${taskText}</span>
+        taskElement.innerHTML = `<span class="task-text">${taskText}</span>
+        <input type="text" class="task-edit" value="${taskText}" style="display: none;">
         <button class="delete-btn"><img src="IMG/Icon/delete_forever_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
         <button class="btn-edit"><img src="IMG/Icon/edit_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>`;
+
+        const textSpan = taskElement.querySelector('.task-text');
+        const editInput = taskElement.querySelector('.task-edit');
+        const editBtn = taskElement.querySelector('.btn-edit');
   
         taskList.appendChild(taskElement);
+
+        taskElement.addEventListener('dblclick', function() {
+            this.classList.toggle('dablclick');
+            saveTasksToStorage();
+        });
   
         taskElement.querySelector('.delete-btn').addEventListener('click', () => {
             taskElement.remove();
             saveTasksToStorage();
         });
 
-        setTimeout(() => {
-                taskElement.classList.add('show');
-        }, 10);
-        taskList.scrollTop = taskList.scrollHeight;
-    }
+        editBtn.addEventListener('click', () => {
+            textSpan.style.display = 'none';
+            editInput.style.display = 'block';
+            editInput.focus();
+        });
 
-    
+        editInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') saveEdit();
+        });
+
+        editInput.addEventListener('blur', saveEdit);
+
+        function saveEdit() {
+            textSpan.textContent = editInput.value;
+            textSpan.style.display = 'block';
+            editInput.style.display = 'none';
+            saveTasksToStorage();
+        }
+
+        setTimeout(() => {
+            taskElement.classList.add('show');
+        }, 10);
+
+        taskList.scrollTop = taskList.scrollHeight;
+        return taskElement;
+    }
+ 
     function saveTasksToStorage() {
-        const tasks = Array.from(document.querySelectorAll('.task span')).map(span => span.textContent);
+        const tasks = Array.from(document.querySelectorAll('.task')).map(task => ({
+            text: task.querySelector('span').textContent,
+            dablclick: task.classList.contains('dablclick')
+        }));
+
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }  
 
@@ -66,4 +107,5 @@ document.addEventListener('DOMContentLoaded', function() {
             addButton.click();
         }
     });
+
 });

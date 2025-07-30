@@ -88,6 +88,10 @@ main{
   transform: translateX(0);
 }
 
+.task.dablclick{
+    text-decoration: line-through;
+}
+
 #Section-task-scroll-content{
     display: flex;
     max-height: 400px;
