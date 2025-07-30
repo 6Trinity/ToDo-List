@@ -14,11 +14,11 @@
     width: 80px;
     margin: 0 0.3em 0.5em 0 ;
     transition: all 0.2s ease;
-    box-shadow: 0 0.5px 2px #272727;
+    box-shadow: 0 0.5px 1px #272727;
 }
 
 #button-task-add:hover{
-    border: 1px solid #fff;
+    box-shadow: 0 0.5px 3px #272727;
 }
 
 .delete-btn{

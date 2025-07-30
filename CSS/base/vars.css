@@ -5,11 +5,6 @@
     --TextSecondoryColor: #000000;
     --BoxShadowBlock: 0 0 0.3em #000;
     --TextPrimaryShadow: 0 0 0.2em #000;
-
-}
-
-/*
-:root, [data-theme="retro"] {
-    --PrimaryColor: linear-gradient(to right, #00D1BA, #0695BF);
-    --HighlightColor: linear-gradient(to right, #256962, #8EDAD2);
+    --TextSecondoryShadow: 0 0 0.2 #fff;
+    --PrimaryFont: "Intel One Mono", monospace;
 }

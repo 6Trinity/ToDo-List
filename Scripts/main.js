@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const taskInput = document.getElementById('input-task');
     const addButton = document.getElementById('button-task-add');
     const taskList = document.getElementById('Section-task-scroll-content');
-
     const taskcolum = document.getElementById('Section-task-add-task');
 
     loadTasks();
