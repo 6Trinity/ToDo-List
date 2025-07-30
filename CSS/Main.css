@@ -70,9 +70,11 @@ main{
     border: 1px solid var(--HighlightColor);
     display: flex;
     align-items: center;
+    position: relative;
+    box-sizing: border-box;
 
     border-radius: 15px;
-    padding: 0.5em;
+    padding: 0.5em 80px 0.5em  0.5em;
     min-height: 50px;
     margin-bottom: 5px;
 

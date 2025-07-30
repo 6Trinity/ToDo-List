@@ -16,28 +16,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const addButton = document.getElementById('button-task-add');
     const taskList = document.getElementById('Section-task-scroll-content');
 
-    function addTask() {
-        const taskText = taskInput.value.trim();
-  
-        if (taskText === '') {
-            alert('Введите текст задачи!');
-            return;
-        }
+    loadTasks();
 
+    function loadTasks() {
+        const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        savedTasks.forEach(taskText => {
+            createTaskElement(taskText);
+        });
+    }
+
+    function createTaskElement(taskText) {
         const taskElement = document.createElement('div');
         taskElement.className = 'task';
-        taskElement.innerHTML = `<span>${taskText}</span>`;
-
+        taskElement.innerHTML = `<span>${taskText}</span>
+        <button class="delete-btn"><img src="IMG/Icon/delete_forever_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button class="btn-edit"><img src="IMG/Icon/edit_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>`;
+  
         taskList.appendChild(taskElement);
+  
+        taskElement.querySelector('.delete-btn').addEventListener('click', () => {
+            taskElement.remove();
+            saveTasksToStorage();
+        });
 
         setTimeout(() => {
-            taskElement.classList.add('show');
+                taskElement.classList.add('show');
         }, 10);
-
-        taskInput.value = '';
         taskList.scrollTop = taskList.scrollHeight;
     }
 
-    addButton.addEventListener('click', addTask);
-  
+    
+    function saveTasksToStorage() {
+        const tasks = Array.from(document.querySelectorAll('.task span')).map(span => span.textContent);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }  
+
+    addButton.addEventListener('click', () => {
+        const taskText = taskInput.value.trim();
+        if (taskText) {
+            createTaskElement(taskText);
+            saveTasksToStorage();
+
+            taskInput.value = '';
+        }
+    });
 });
