@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Список дел Martynov Egor">
+    <meta property="og:title" content="To-Do list">
+    <link rel="stylesheet" href="CSS/Main.css">
+    <link rel="icon" href="IMG/Icon/Favicon-ToDo.ico">
+    <title>To-Do list</title>
+</head>
+<body>
+    <div class="layout">
+        <main>
+            <div class="Grid-Section">
+                <div id="Section-task-add">
+                    <div class="Section-content-flex" id="Section-task-add-calendar"></div>
+                    <div class="Section-content-flex" id="Section-task-add-task">
+                        Today<br>
+                        <div></div>
+                    </div>
+                    <div class="Section-content-flex" id="Section-task-add-button">
+                        <button class="button-task" id="button-task-add">
+                            Add +
+                        </button>
+                    </div>
+                    <div class="Section-content-flex">
+                        <input id="input-task" type="text" placeholder="Add your tasks">
+                    </div>
+                </div>
+            </div>
+            <div class="Grid-Section" id="Section-task-scroll">
+                <div id="Section-task-scroll-box">
+                    <div></div>
+                    <div>
+                        My Tasks
+                    </div>
+                    <div id="Section-task-scroll-content">
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="Scripts/main.js"></script>
+</body>
+</html>

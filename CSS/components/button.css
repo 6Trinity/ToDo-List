@@ -1,0 +1,16 @@
+.button-task{
+    border: none;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    color: var(--TextSecondoryColor);
+}
+
+#button-task-add{
+    background: var(--HighlightColor);
+    color: var(--TextColor);
+    border-radius: 15px;
+    height: 35px;
+    width: 80px;
+    margin: 0 0.3em 0.5em 0 ;
+}

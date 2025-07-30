@@ -1,0 +1,16 @@
+#input-task{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding: 0 1rem 0 1rem;
+    box-sizing: border-box;
+    outline: none; 
+    box-shadow: inset 0 0.5px 4px #272727;
+    background: var(--HighlightColor);
+    border: none; 
+}
+
+#input-task:focus{
+    background: var(--TextColor); 
+}

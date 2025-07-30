@@ -1,0 +1,29 @@
+:root {
+    --PrimaryColor: #A067EA;
+    --HighlightColor: #D4B3FF;
+    --TextColor: #FFFFFF;
+    --TextSecondoryColor: #000000;
+    --BoxShadowBlock: 0 0 0.3em #000;
+}
+
+/*
+:root, [data-theme="light"] {
+    --PrimaryColor: #A067EA;
+    --HighlightColor: #D4B3FF;
+    --TextSecondoryColor: #FFFFFF;
+    --BoxShadowBlock: 0 0 0.2em #000;
+}
+
+[data-theme="dark"] {
+    --PrimaryColor: #A067EA;
+    --HighlightColor: #D4B3FF;
+    --TextSecondoryColor: #FFFFFF;
+    --BoxShadowBlock: 0 0 0.2em #000;
+}
+
+[data-theme="retro"] {
+    --PrimaryColor: #A067EA;
+    --HighlightColor: #D4B3FF;
+    --TextSecondoryColor: #FFFFFF;
+    --BoxShadowBlock: 0 0 0.2em #000;
+}
