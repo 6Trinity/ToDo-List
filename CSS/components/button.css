@@ -10,15 +10,16 @@
     background: var(--HighlightColor);
     color: var(--TextColor);
     border-radius: 15px;
-    height: 35px;
+    height: 45px;
     width: 80px;
-    margin: 0 0.3em 0.5em 0 ;
-    transition: all 0.2s ease;
-    box-shadow: 0 0.5px 1px #272727;
+    margin: 0 0.2em 0.5em 0 ;
+    box-shadow: var(--BoxShadowBlock);
+    transition: all 0.3s ease;
 }
 
 #button-task-add:hover{
-    box-shadow: 0 0.5px 3px #272727;
+    transform: var(--PrimaryAnimation);
+    background: var(--PrimaryHighlightColor)
 }
 
 .delete-btn{
@@ -28,28 +29,41 @@
     position: absolute;
     background: var(--PrimaryColor);
     right: 0;
-    border: 1px solid var(--PrimaryColor);
+    margin-right: -1px;
+    border: none;
     cursor: pointer;
     border-radius: 0 15px 15px 0;
 }
 
+.delete-btn:hover img{
+    transform: var(--PrimaryAnimation);
+}
+.btn-edit:hover img{
+    transform: var(--PrimaryAnimation);
+}
+
+.btn-complete:hover img{
+    transform: var(--PrimaryAnimation);
+}
+
+
 .btn-edit{
     width: 40px;
     min-height: 50px;
-    margin-right: 40px;
+    margin-right: 39px;
     height: 100%;
     position: absolute;
     background: var(--HighlightColor);
     right: 0;
-    border: 1px solid var(--HighlightColor);
+    border: none;
     cursor: pointer;
-    border-radius: 15px 0 0 15px;
+    border-radius: 17px 0 0 17px;
 }
 
 .btn-complete{
     width: 40px;
     min-height: 50px;
-    margin-right: 40px;
+    margin-left: -1px;
     height: 100%;
     position: absolute;
     background: var(--HighlightColor);

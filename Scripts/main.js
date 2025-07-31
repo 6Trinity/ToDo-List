@@ -57,8 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
         comBtn.addEventListener('click', () => toggleTaskCompletion(taskElement));
   
         taskElement.querySelector('.delete-btn').addEventListener('click', () => {
+            taskElement.classList.add('fade-out');
+            taskElement.addEventListener('animationend', () => {
             taskElement.remove();
             saveTasksToStorage();
+        }, { once: true });
         });
 
         editBtn.addEventListener('click', () => {
@@ -79,10 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
             editInput.style.display = 'none';
             saveTasksToStorage();
         }
-
-        setTimeout(() => {
-            taskElement.classList.add('show');
-        }, 10);
 
         taskList.scrollTop = taskList.scrollHeight;
         return taskElement;

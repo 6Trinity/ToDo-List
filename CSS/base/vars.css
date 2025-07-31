@@ -1,10 +1,16 @@
 :root {
+    --PrimaryFont: "Intel One Mono", monospace;
+
     --PrimaryColor: #A067EA;
     --HighlightColor: #D4B3FF;
+    --PrimaryHighlightColor: #dfc6ffe3;
     --TextColor: #FFFFFF;
     --TextSecondoryColor: #000000;
-    --BoxShadowBlock: 0 0 0.3em #000;
-    --TextPrimaryShadow: 0 0 0.2em #000;
-    --TextSecondoryShadow: 0 0 0.2 #fff;
-    --PrimaryFont: "Intel One Mono", monospace;
+
+    --BoxShadowBlock: 1px 1px 2px rgba(0,0,0,0.3), 2px 2px 4px rgba(0,0,0,0.1);
+    --BoxShadowBlockHighlight:1px 1px 2px rgba(0,0,0,0.5), 2px 2px 4px rgba(0, 0, 0, 0.3);
+    --TextPrimaryShadow: 1px 1px 2px #000;
+    --TextSecondoryShadow: 0 0 0.1 #fff;
+
+    --PrimaryAnimation: translateY(1px);
 }

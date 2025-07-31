@@ -66,6 +66,11 @@ main{
 
 #Section-task-scroll-box div{
     color: var(--PrimaryColor);
+    padding: 2px;
+}
+
+#Section-task-add-calendar{
+    margin-right: 2px;
 }
 
 .task{
@@ -74,21 +79,51 @@ main{
     align-items: center;
     position: relative;
     box-sizing: border-box;
+    cursor: pointer;
 
     border-radius: 15px;
-    padding: 0.5em 80px 0.5em  50px;
+    padding:  100px;
     min-height: 50px;
     margin-bottom: 5px;
     text-shadow: none;
-
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 0.5s, transform 0.3s;
+    box-shadow: var(--BoxShadowBlock);
+    transition: all 0.3s ease;
+    animation: taskAppear 0.3s ease;
 }
 
-.task.show {
-  opacity: 1;
-  transform: translateX(0);
+.task.fade-out {
+    animation: fadeOut 0.3s ease forwards;
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    transform: translateX(100%);
+    
+}
+
+@keyframes fadeOut {
+    0% { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% { 
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.task-text{
+    padding: 0 70px 0 40px; 
+}
+
+.task:hover{
+    transform: translateY(-1px);
+    box-shadow: var(--BoxShadowBlockHighlight);
+}
+
+@keyframes taskAppear {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .task.dablclick{
@@ -98,7 +133,7 @@ main{
 
 #Section-task-scroll-content{
     display: flex;
-    max-height: 400px;
+    max-height: 90%;
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden; 
