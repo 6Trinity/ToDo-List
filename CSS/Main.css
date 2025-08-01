@@ -5,18 +5,13 @@
 @import url('./components/input.css');
 
 body, html{
-    background: var(--PrimaryColor);
-    color: var(--TextColor);
-    text-shadow: var(--TextPrimaryShadow);
-    font-family: var(--PrimaryFont);
     overflow: hidden;
-    font-size: 20px;
-}
 
-main{
-    display: grid;
-    grid-template: 2fr 4fr / 1fr;
-    flex-grow: 1;
+    background: var(--PrimaryColor);
+    font-family: var(--PrimaryFont);
+    color: var(--TextColor);
+    font-size: 20px;
+    text-shadow: var(--TextPrimaryShadow);
 }
 
 .layout{
@@ -24,57 +19,63 @@ main{
     min-height: 100vh;
 } 
 
-.Grid-Section{
+main{
+    display: grid;
+    grid-template: 2fr 4fr / 1fr;
+    flex-grow: 1;
+}
+
+.section-grid{
     display: grid;
     grid-template: 20px 1fr 20px / 20px 1fr 20px;
 }
 
-#Section-task-scroll{
-    background: var(--TextColor);
-    border-radius: 50px 0 0 0 ;
-    box-shadow: var(--BoxShadowBlock);
-}
-
-#Section-task-add{
+.article-grid-colum{
     display: grid;
     grid-template: repeat(1fr, 4) / 1fr;
     grid-area: 2 / 2 / 2 / 2;
 }
 
-.Section-content-flex{
+.div-flex-content{
     display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 0.1em;
 }
 
-#Section-task-add-task{
-    justify-content: start;
-}
-
-#Section-task-add-button{
+.flex-end{
     justify-content: end;
     align-items: end;
-    padding: 0
 }
 
-#Section-task-scroll-box{
-    display: grid;
-    grid-area: 2 / 2 / 2 / 2;
-    grid-template: 70px 30px 1fr / 1fr;
+.flex-center{
+    justify-content: center;
+    align-items: center;
 }
 
-#Section-task-scroll-box div{
+.flex-column{
+    flex-direction: column;
+    align-items: start;
+}
+
+.flex-space-between{
+    justify-content: space-around;
+    min-width: 75px;
+}
+
+.highlightspan{
+    font-size: 26px;
+    font-family: var(--SecondoryFont);
+}
+
+#section-task-list{
+    background: var(--TextColor);
+    border-radius: 50px 0 0 0 ;
     color: var(--PrimaryColor);
-    padding: 2px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.4)
 }
 
-#Section-task-add-calendar{
-    margin-right: 2px;
-}
+#article-task-scroll{ grid-template: 70px 30px 1fr / 1fr }
 
 .task{
-    border: 1px solid var(--HighlightColor);
     display: flex;
     align-items: center;
     position: relative;
@@ -82,34 +83,24 @@ main{
     cursor: pointer;
 
     border-radius: 15px;
-    padding:  100px;
     min-height: 50px;
+    width: 98%;
+    border: 1px solid var(--HighlightColor);
     margin-bottom: 5px;
     text-shadow: none;
     box-shadow: var(--BoxShadowBlock);
+
     transition: all 0.3s ease;
     animation: taskAppear 0.3s ease;
 }
 
-.task.fade-out {
+.task.fade-out{
     animation: fadeOut 0.3s ease forwards;
     max-height: 0;
     opacity: 0;
     margin: 0;
     padding: 0;
-    transform: translateX(100%);
-    
-}
-
-@keyframes fadeOut {
-    0% { 
-        opacity: 1;
-        transform: translateX(0);
-    }
-    100% { 
-        opacity: 0;
-        transform: translateX(-100%);
-    }
+    transform: translateX(100%); 
 }
 
 .task-text{
@@ -122,31 +113,16 @@ main{
 }
 
 @keyframes taskAppear {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateX(0);}
+    100% { opacity: 0; transform: translateX(-100%);}
 }
 
 .task.dablclick{
     text-decoration: line-through;
     background: var(--HighlightColor);
-}
-
-#Section-task-scroll-content{
-    display: flex;
-    max-height: 90%;
-    flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden; 
-}
-
-#Section-task-add-box{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-}
-
-#Section-task-add-box-div{
-    display: flex;
-    justify-content: space-between;
-    min-width: 75px;
 }

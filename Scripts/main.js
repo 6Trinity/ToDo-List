@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const databox = document.getElementById('Section-task-add-calendar');
+    const databox = document.getElementById('time-date-today');
 
     function updateDate() {
         const today = new Date();
@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDate();
     setInterval(updateDate, 86400000);
 
-    const taskInput = document.getElementById('input-task');
+    const taskInput = document.getElementById('input-task-add');
     const addButton = document.getElementById('button-task-add');
-    const taskList = document.getElementById('Section-task-scroll-content');
-    const taskcolum = document.getElementById('Section-task-add-task');
+    const taskList = document.getElementById('tasklist');
+    const taskcolum = document.getElementById('alltask');
 
     loadTasks();
 
@@ -33,18 +33,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function createTaskElement(taskText) {
-        const taskElement = document.createElement('div');
+        const taskElement = document.createElement('article');
         taskElement.className = 'task';
-        taskElement.innerHTML = `<button class="btn-complete"><img src="IMG/Icon/check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
+        taskElement.innerHTML = `<button class="button-task button-task-comp"><img src="IMG/Icon/check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
         <span class="task-text">${taskText}</span>
-        <input type="text" class="task-edit" value="${taskText}" style="display: none;">
-        <button class="delete-btn"><img src="IMG/Icon/delete_forever_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
-        <button class="btn-edit"><img src="IMG/Icon/edit_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>`;
+        <input type="text" class="input-task-edit" value="${taskText}" style="display: none;">
+        <button class="button-task button-task-delete"><img src="IMG/Icon/delete_forever_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button class="button-task button-task-edit"><img src="IMG/Icon/edit_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>`;
 
         const textSpan = taskElement.querySelector('.task-text');
-        const editInput = taskElement.querySelector('.task-edit');
-        const editBtn = taskElement.querySelector('.btn-edit');
-        const comBtn = taskElement.querySelector('.btn-complete');
+        const editInput = taskElement.querySelector('.input-task-edit');
+        const editBtn = taskElement.querySelector('.button-task-edit');
+        const comBtn = taskElement.querySelector('.button-task-comp');
   
         taskList.appendChild(taskElement);
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         taskElement.addEventListener('dblclick', () => toggleTaskCompletion(taskElement));
         comBtn.addEventListener('click', () => toggleTaskCompletion(taskElement));
   
-        taskElement.querySelector('.delete-btn').addEventListener('click', () => {
+        taskElement.querySelector('.button-task-delete').addEventListener('click', () => {
             taskElement.classList.add('fade-out');
             taskElement.addEventListener('animationend', () => {
             taskElement.remove();
@@ -111,5 +111,4 @@ document.addEventListener('DOMContentLoaded', function() {
             addButton.click();
         }
     });
-
 });

@@ -11,41 +11,49 @@
 <body>
     <div class="layout">
         <main>
-            <section class="Grid-Section">
-                <div id="Section-task-add">
-                    <article class="Section-content-flex">
-                        <div id="Section-task-add-calendar"></div>
+            <section class="section-grid">
+                <article class="article-grid-colum">
+                    <div class="div-flex-content flex-center">
+                        <span class="highlightspan">
+                            <time id="time-date-today"></time>
+                        </span>
                         <img src="IMG/Icon/ink_highlighter_move_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">
-                    </article>
-                    <article class="Section-content-flex" id="Section-task-add-box">
-                        Today:
-                        <div id="Section-task-add-box-div">
-                            <div id="Section-task-add-task">0</div>tasks
+                    </div>
+                    <div class="div-flex-content flex-column">
+                        <div class="div-flex-content flex-column">
+                            <span class="highlightspan">All:</span>
+                            <div class="div-flex-content flex-center flex-space-between">
+                                <div id="alltask">0</div>
+                                <span>task</span>
+                            </div>
                         </div>
-                    </article>
-                    <div class="Section-content-flex" id="Section-task-add-button">
-                        <button class="button-task" id="button-task-add">
-                            Add+
+                        <div class="div-flex-content flex-column">
+                            <span class="highlightspan">Today:</span>
+                            <div class="div-flex-content flex-center flex-space-between">
+                                <div>0</div>
+                                <span>task</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-flex-content flex-end">
+                        <button id="button-task-add">
+                            <span>Add+</span>
                         </button>
                     </div>
-                    <div class="Section-content-flex">
-                        <input id="input-task" type="text" placeholder="Add your tasks">
-                    </div>
-                </div>
-            </section>
-            <section class="Grid-Section" id="Section-task-scroll">
-                <article id="Section-task-scroll-box">
-                    <div></div>
-                    <div>
-                        My Tasks
-                    </div>
-                    <div id="Section-task-scroll-content">
-                        
+                    <div class="div-flex-content">
+                        <input id="input-task-add" type="text" placeholder="Add your tasks">
                     </div>
                 </article>
             </section>
+            <section class="section-grid" id="section-task-list">
+                <article class="article-grid-colum" id="article-task-scroll">
+                    <div></div> 
+                    <span class="highlightspan">My Tasks</span>
+                    <div id="tasklist"></div>
+                </article>
+            </section>
         </main>
-    </div>
+    </div>  
     <script src="Scripts/main.js"></script>
 </body>
 </html>

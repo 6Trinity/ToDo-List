@@ -1,15 +1,17 @@
 :root {
     --PrimaryFont: "Intel One Mono", monospace;
+    --SecondoryFont:"Bebas Neue", sans-serif; 
 
-    --PrimaryColor: #A067EA;
+    --PrimaryColor: #a067ea;
     --HighlightColor: #D4B3FF;
     --PrimaryHighlightColor: #dfc6ffe3;
     --TextColor: #FFFFFF;
     --TextSecondoryColor: #000000;
 
-    --BoxShadowBlock: 1px 1px 2px rgba(0,0,0,0.3), 2px 2px 4px rgba(0,0,0,0.1);
-    --BoxShadowBlockHighlight:1px 1px 2px rgba(0,0,0,0.5), 2px 2px 4px rgba(0, 0, 0, 0.3);
-    --TextPrimaryShadow: 1px 1px 2px #000;
+    --InputShadowBlock: inset 1px 1px 5px rgba(0,0,0);
+    --BoxShadowBlock: 1px 2px 2px rgba(0,0,0,0.3), 2px 4px 4px rgba(0,0,0,0.1);
+    --BoxShadowBlockHighlight:1px 2px 2px rgba(0,0,0,0.4), 2px 4px 4px rgba(0, 0, 0, 0.2);
+    --TextPrimaryShadow: 1px 1px 2px rgba(0,0,0,0.7), 2px 2px 3px rgba(0, 0, 0, 0.3);
     --TextSecondoryShadow: 0 0 0.1 #fff;
 
     --PrimaryAnimation: translateY(1px);

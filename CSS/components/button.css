@@ -1,74 +1,54 @@
-.button-task{
+button{
     border: none;
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    color: var(--TextSecondoryColor);
+
+    color: var(--TextColor);
 }
 
 #button-task-add{
-    background: var(--HighlightColor);
-    color: var(--TextColor);
     border-radius: 15px;
     height: 45px;
     width: 80px;
-    margin: 0 0.2em 0.5em 0 ;
-    box-shadow: var(--BoxShadowBlock);
+
+    background: var(--HighlightColor);
     transition: all 0.3s ease;
+    box-shadow: var(--BoxShadowBlock);
 }
 
-#button-task-add:hover{
+#button-task-add:hover{ 
     transform: var(--PrimaryAnimation);
-    background: var(--PrimaryHighlightColor)
+    background: var(--PrimaryHighlightColor); 
+    box-shadow: var(--BoxShadowBlockHighlight);
 }
 
-.delete-btn{
+.button-task{
     width: 40px;
     min-height: 50px;
     height: 100%;
     position: absolute;
+}
+
+.button-task-delete{
     background: var(--PrimaryColor);
     right: 0;
     margin-right: -1px;
-    border: none;
-    cursor: pointer;
     border-radius: 0 15px 15px 0;
 }
 
-.delete-btn:hover img{
-    transform: var(--PrimaryAnimation);
-}
-.btn-edit:hover img{
-    transform: var(--PrimaryAnimation);
-}
-
-.btn-complete:hover img{
-    transform: var(--PrimaryAnimation);
-}
-
-
-.btn-edit{
-    width: 40px;
-    min-height: 50px;
+.button-task-edit{
     margin-right: 39px;
-    height: 100%;
-    position: absolute;
     background: var(--HighlightColor);
     right: 0;
-    border: none;
-    cursor: pointer;
-    border-radius: 17px 0 0 17px;
-}
-
-.btn-complete{
-    width: 40px;
-    min-height: 50px;
-    margin-left: -1px;
-    height: 100%;
-    position: absolute;
-    background: var(--HighlightColor);
-    left: 0;
-    border: 1px solid var(--HighlightColor);
-    cursor: pointer;
     border-radius: 15px 0 0 15px;
 }
+
+.button-task-comp{
+    margin-left: -1px;
+    background: var(--HighlightColor);
+    left: 0;
+    border-radius: 15px 0 0 15px;
+}
+
+.button-task:hover img{ transform: var(--PrimaryAnimation) }
