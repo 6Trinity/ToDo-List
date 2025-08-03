@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const databox = document.getElementById('time-date-today');
+    const scrollThreshold = 1;
 
     function updateDate() {
         const today = new Date();
@@ -18,6 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const addButton = document.getElementById('button-task-add');
     const taskList = document.getElementById('tasklist');
     const taskcolum = document.getElementById('alltask');
+
+    taskList.addEventListener('scroll', function() {
+        if (this.scrollTop > scrollThreshold) {
+            taskList.classList.add('scrolled');
+        } else {
+            taskList.classList.remove('scrolled');
+        }
+    });
 
     loadTasks();
 

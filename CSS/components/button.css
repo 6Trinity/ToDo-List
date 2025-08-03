@@ -3,24 +3,25 @@ button{
     cursor: pointer;
     justify-content: center;
     align-items: center;
-
-    color: var(--TextColor);
+    background: none;
+    color: var(--PrimaryFontColor);
 }
 
 #button-task-add{
     border-radius: 15px;
     height: 45px;
     width: 80px;
+    margin-bottom: 5px;
+    background: var(--PrimaryBoxBackground);
+    box-shadow: var(--PrimaryBoxShadow);
 
-    background: var(--HighlightColor);
     transition: all 0.3s ease;
-    box-shadow: var(--BoxShadowBlock);
 }
 
 #button-task-add:hover{ 
-    transform: var(--PrimaryAnimation);
-    background: var(--PrimaryHighlightColor); 
-    box-shadow: var(--BoxShadowBlockHighlight);
+    transform:translateY(-1px);
+    box-shadow: var(--SecondoryBoxShadow);
+    background: var(--SecondoryBoxBackground);
 }
 
 .button-task{
@@ -28,10 +29,10 @@ button{
     min-height: 50px;
     height: 100%;
     position: absolute;
+    background: var(--SecondoryBoxBackground);
 }
 
 .button-task-delete{
-    background: var(--PrimaryColor);
     right: 0;
     margin-right: -1px;
     border-radius: 0 15px 15px 0;
@@ -39,16 +40,16 @@ button{
 
 .button-task-edit{
     margin-right: 39px;
-    background: var(--HighlightColor);
     right: 0;
     border-radius: 15px 0 0 15px;
 }
 
 .button-task-comp{
     margin-left: -1px;
-    background: var(--HighlightColor);
     left: 0;
     border-radius: 15px 0 0 15px;
 }
 
-.button-task:hover img{ transform: var(--PrimaryAnimation) }
+.button-task:hover img{ 
+    transform: var(--PrimaryAnimation) 
+}

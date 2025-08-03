@@ -8,19 +8,26 @@ input{
     border: none; 
 }
 
-input::placeholder{ transition: opacity 0.3s }
+input::placeholder{ 
+    transition: opacity 0.3s 
+}
 
-input:focus::placeholder{ opacity: 0.5 }
+input:focus::placeholder{ 
+    opacity: 0.5 
+}
 
 #input-task-add{
     min-height: 50px;
     border-radius: 15px;
-    background: var(--HighlightColor);
-    box-shadow: var(--InputShadowBlock);
+    background: var(--PrimaryBoxBackground);
+    box-shadow: var(--PrimaryBoxShadow), inset 0 0 3px #ffffff75;
 }
 
-#input-task-add:focus{ background: var(--TextColor) }
+#input-task-add:focus, #input-task-add:hover{ 
+    background: var(--SecondoryBoxBackground);
+    box-shadow: var(--SecondoryBoxShadow);
+}
 
-#input-task-add:hover{ background: var(--PrimaryHighlightColor) }
-
-.input-task-edit{ margin: 0 80px 0 1em }
+.input-task-edit{ 
+    margin: 0 80px 0 1em 
+}

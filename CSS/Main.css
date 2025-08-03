@@ -5,29 +5,46 @@
 @import url('./components/input.css');
 
 body, html{
+    height: 100%;
     overflow: hidden;
 
-    background: var(--PrimaryColor);
+    font-size: var(--PrimaryFontSize);
+    background: var(--PrimaryBackground);
+    background-size: 400% 400%;
+    color: var(--PrimaryFontColor);
+    text-shadow: var(--PrimaryTextShadow);
     font-family: var(--PrimaryFont);
-    color: var(--TextColor);
-    font-size: 20px;
-    text-shadow: var(--TextPrimaryShadow);
+    animation: gradientAnimation 15s ease infinite;
+
+    scrollbar-color: #a067ea52 var(--PrimaryBoxBackground);
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .layout{
     display: flex;
     min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
 } 
 
 main{
     display: grid;
-    grid-template: 2fr 4fr / 1fr;
-    flex-grow: 1;
+    grid-template-rows: minmax(0, 2fr) minmax(0, 4fr);
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .section-grid{
     display: grid;
     grid-template: 20px 1fr 20px / 20px 1fr 20px;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .article-grid-colum{
@@ -57,23 +74,43 @@ main{
 }
 
 .flex-space-between{
-    justify-content: space-around;
-    min-width: 75px;
+    justify-content: space-between;
+    min-width: 50px;
 }
 
 .highlightspan{
-    font-size: 26px;
-    font-family: var(--SecondoryFont);
+    font-size: var(--HighlightFontSize);
+}
+
+.secondoryspan{
+    font-size: var(--SecondoryFontSize);
 }
 
 #section-task-list{
-    background: var(--TextColor);
     border-radius: 50px 0 0 0 ;
-    color: var(--PrimaryColor);
-    box-shadow: 0 0 6px rgba(0,0,0,0.4)
+    box-shadow: var(--HighlightBoxShadow); 
+    background: var(--PrimaryBoxBackground);
 }
 
-#article-task-scroll{ grid-template: 70px 30px 1fr / 1fr }
+#article-task-scroll{ 
+    grid-template: 70px 30px 1fr / 1fr;
+    min-height: 0;
+    height: 100%
+}
+
+#tasklist{
+    min-height: 0;
+    padding: 10px;
+    overflow-y: auto;
+    grid-row: 3;
+
+    background: none;
+}
+#tasklist.scrolled{
+    box-shadow: 
+    inset 0 10px 15px -20px rgba(0, 0, 0, 0.973),
+    inset 0 15px 15px -20px rgba(0, 0, 0, 0.774);
+}
 
 .task{
     display: flex;
@@ -85,10 +122,10 @@ main{
     border-radius: 15px;
     min-height: 50px;
     width: 98%;
-    border: 1px solid var(--HighlightColor);
-    margin-bottom: 5px;
     text-shadow: none;
-    box-shadow: var(--BoxShadowBlock);
+    margin-bottom: 10px;
+    box-shadow: var(--PrimaryBoxShadow);
+    background: var(--PrimaryBoxBackground);
 
     transition: all 0.3s ease;
     animation: taskAppear 0.3s ease;
@@ -104,12 +141,13 @@ main{
 }
 
 .task-text{
-    padding: 0 70px 0 40px; 
+    padding: 0 70px 0 45px; 
 }
 
 .task:hover{
-    transform: translateY(-1px);
-    box-shadow: var(--BoxShadowBlockHighlight);
+    transform:translateY(-1px);
+    box-shadow: var(--SecondoryBoxShadow);
+    background: var(--SecondoryBoxBackground);
 }
 
 @keyframes taskAppear {
@@ -124,5 +162,5 @@ main{
 
 .task.dablclick{
     text-decoration: line-through;
-    background: var(--HighlightColor);
+    background: var(--SecondoryBoxBackground);
 }
