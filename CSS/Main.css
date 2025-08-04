@@ -141,7 +141,19 @@ main{
 }
 
 .task-text{
-    padding: 0 70px 0 45px; 
+    margin: 0 80px 0 45px; 
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.task-text.fullsize{
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0 0 0 40px;
+    min-height: 149px;
+    padding: 0.1em;
 }
 
 .task:hover{
