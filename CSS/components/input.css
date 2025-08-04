@@ -9,6 +9,7 @@ input{
 
     background: var(--PrimaryBoxBackground);
     color: var(--PrimaryFontColor);
+    transition: all 0.3s ease;
 }
 
 input::placeholder{ 
@@ -37,6 +38,7 @@ input:focus::placeholder{
     color: var(--PrimaryFontColor);
     outline: none; 
     border: none; 
-    margin: 0 0 0 40px; 
-
+    margin: 0px 0 35px 0;
+    padding: 15px;
+    resize: none;
 }

@@ -122,7 +122,7 @@ main{
     border-radius: 15px;
     min-height: 50px;
     width: 98%;
-    text-shadow: none;
+    text-shadow: var(--SecondoryTextShadow);
     margin-bottom: 10px;
     box-shadow: var(--PrimaryBoxShadow);
     background: var(--PrimaryBoxBackground);
@@ -147,13 +147,13 @@ main{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .task-text.fullsize{
     text-overflow: clip;
     white-space: pre-wrap;
     word-wrap: break-word;
-    margin: 0 0 0 40px;
-    min-height: 149px;
-    padding: 0.1em;
+    margin: 0px 0 35px 0;
+    padding: 15px;
 }
 
 .task:hover{

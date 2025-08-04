@@ -1,7 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const databox = document.getElementById('time-date-today');
+    const taskInput = document.getElementById('input-task-add');
+    const addButton = document.getElementById('button-task-add');
+    const taskList = document.getElementById('tasklist');
+    const taskcolum = document.getElementById('alltask');
     const scrollThreshold = 1;
+
+    updateDate();
+    setInterval(updateDate, 86400000);
+    loadTasks();
 
     function updateDate() {
         const today = new Date();
@@ -11,24 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         databox.textContent = `${dayName + " " +  today.toLocaleDateString('en-EN', options)}`;
     }
-
-    updateDate();
-    setInterval(updateDate, 86400000);
-
-    const taskInput = document.getElementById('input-task-add');
-    const addButton = document.getElementById('button-task-add');
-    const taskList = document.getElementById('tasklist');
-    const taskcolum = document.getElementById('alltask');
-
-    taskList.addEventListener('scroll', function() {
-        if (this.scrollTop > scrollThreshold) {
-            taskList.classList.add('scrolled');
-        } else {
-            taskList.classList.remove('scrolled');
-        }
-    });
-
-    loadTasks();
 
     function loadTasks() {
         const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -45,39 +35,96 @@ document.addEventListener('DOMContentLoaded', function() {
         const taskElement = document.createElement('article');
         taskElement.className = 'task';
         taskElement.innerHTML = `
-            <button class="button-task button-task-comp"><img src="IMG/Icon/check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
-            <span class="task-text">${taskText}</span>
-            <textarea class="textarea-task-edit" style="display: none">${taskText}</textarea>
-            <button class="button-task button-task-delete"><img src="IMG/Icon/delete_forever_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
-            <button class="button-task button-task-edit"><img src="IMG/Icon/edit_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>`;
+        <button class="button-task button-task-comp"><img src="IMG/Icon/check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <span class="task-text">${taskText}</span>
+        <textarea class="textarea-task-edit" style="display: none">${taskText}</textarea>
+        <button class="button-task button-task-edit"><img src="IMG/Icon/edit_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button class="button-task button-task-delete"><img src="IMG/Icon/delete_forever_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png"></button>
+        `;
+
+        taskList.appendChild(taskElement);
 
         const textSpan = taskElement.querySelector('.task-text');
         const edittextarea = taskElement.querySelector('.textarea-task-edit');
         const editBtn = taskElement.querySelector('.button-task-edit');
         const comBtn = taskElement.querySelector('.button-task-comp');
         const delBtn = taskElement.querySelector('.button-task-delete');
-  
-        taskList.appendChild(taskElement);
 
         function toggleTaskCompletion(task) {
             task.classList.toggle('dablclick');
             saveTasksToStorage();
         }
 
-        const isTextTruncated = textSpan.scrollHeight > textSpan.clientHeight;
+        function saveEdit() {
+            textSpan.textContent = edittextarea.value;
+            textSpan.style.display = 'block';
+            edittextarea.style.display = 'none';
+            saveTasksToStorage();
 
-        function fullsizing() {
-
-            textSpan.classList.toggle('fullsize'); 
-            editBtn.classList.toggle('fullsize'); 
-            comBtn.classList.toggle('fullsize'); 
-            delBtn.classList.toggle('fullsize'); 
         }
 
-        textSpan.addEventListener('click', () => fullsizing());
+        function autoResizeTextarea(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = (textarea.scrollHeight - 4) + 'px';
+        }
 
-        comBtn.addEventListener('click', () => toggleTaskCompletion(taskElement));
-  
+        function toggleEditMode(enable) {
+            const length = edittextarea.value.length;
+            if (enable) {
+                textSpan.style.display = 'none';
+                edittextarea.setSelectionRange(length, length);
+                edittextarea.style.display = 'block';
+                edittextarea.focus();
+                autoResizeTextarea(edittextarea);
+                toggleFullsize(true);
+        
+            } else {
+                textSpan.style.display = 'block';
+                edittextarea.style.display = 'none';
+                textSpan.textContent = edittextarea.value;
+                saveTasksToStorage();
+            }
+        }
+
+
+        function checkTruncation(textSpan) {
+            return textSpan.offsetWidth < textSpan.scrollWidth;
+        }
+
+        function toggleFullsize(enable) {
+            if (enable) {
+                textSpan.classList.add('fullsize');
+                editBtn.classList.add('fullsize');
+                delBtn.classList.add('fullsize');
+                comBtn.classList.add('fullsize');
+            } else {
+                textSpan.classList.remove('fullsize');
+                editBtn.classList.remove('fullsize');
+                delBtn.classList.remove('fullsize');
+                comBtn.classList.remove('fullsize');
+            }
+        }
+
+        textSpan.addEventListener('click',() => {
+            const truncated  = checkTruncation(textSpan);
+            if(textSpan.classList.contains('fullsize')){
+                toggleFullsize(false);
+            }else if(truncated){
+                toggleFullsize(true);
+            }else return;
+        })
+
+        editBtn.addEventListener('click', () =>{
+            if(textSpan.style.display = 'none'){
+                toggleEditMode(true);
+            }
+            else{
+                toggleEditMode();
+            }
+        })
+
+
+
         delBtn.addEventListener('click', () => {
             taskElement.classList.add('fade-out');
             taskElement.addEventListener('animationend', () => {
@@ -86,28 +133,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }, { once: true });
         });
 
-        function autoResizeTextarea(textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = (textarea.scrollHeight) + 'px';
-        }
+        comBtn.addEventListener('click', () => toggleTaskCompletion(taskElement));
 
         edittextarea.addEventListener('input', () => autoResizeTextarea(edittextarea));
-
-        editBtn.addEventListener('click', () => {
-            textSpan.style.display = 'none';
-            edittextarea.style.display = 'flex';
-            edittextarea.focus();
-            autoResizeTextarea(edittextarea);
-        });
-
         edittextarea.addEventListener('blur', saveEdit);
-
-        function saveEdit() {
-            textSpan.textContent = edittextarea.value;
-            textSpan.style.display = 'block';
-            edittextarea.style.display = 'none';
-            saveTasksToStorage();
-        }
 
         taskList.scrollTop = taskList.scrollHeight;
         return taskElement;
@@ -121,6 +150,14 @@ document.addEventListener('DOMContentLoaded', function() {
         taskcolum.textContent = document.querySelectorAll('.task:not(.dablclick)').length;
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }  
+
+    taskList.addEventListener('scroll', function() {
+        if (this.scrollTop > scrollThreshold) {
+            taskList.classList.add('scrolled');
+        } else {
+            taskList.classList.remove('scrolled');
+        }
+    });
 
     addButton.addEventListener('click', () => {
         const taskText = taskInput.value.trim();
