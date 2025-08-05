@@ -146,6 +146,7 @@ main{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    transition: all 0.3s ease;
 }
 
 .task-text.fullsize{

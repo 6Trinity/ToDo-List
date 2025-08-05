@@ -38,6 +38,7 @@ input:focus::placeholder{
     color: var(--PrimaryFontColor);
     outline: none; 
     border: none; 
+    text-shadow: var(--SecondoryTextShadow);
     margin: 0px 0 35px 0;
     padding: 15px;
     resize: none;

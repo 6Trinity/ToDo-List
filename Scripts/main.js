@@ -122,8 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }else return;
         })
 
-        textSpan.addEventListener('dblclick', () => toggleTaskCompletion(taskElement))
-
         editBtn.addEventListener('click', () =>{
             if(textSpan.style.display = 'none'){
                 toggleEditMode(true);
@@ -147,11 +145,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-
-
         comBtn.addEventListener('click', () => toggleTaskCompletion(taskElement));
 
+        textSpan.addEventListener('dblclick', () => toggleTaskCompletion(taskElement))
+
         edittextarea.addEventListener('input', () => autoResizeTextarea(edittextarea));
+
         edittextarea.addEventListener('blur', saveEdit);
 
         taskList.scrollTop = taskList.scrollHeight;
