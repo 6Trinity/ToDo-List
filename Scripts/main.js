@@ -63,6 +63,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         }
 
+        function closeTask() {
+            if (textSpan.classList.contains('fullsize')) {
+                toggleFullsize(false);
+            }
+            if (edittextarea.style.display === 'block') {
+                toggleEditMode(false);
+            }
+        }
+
         function autoResizeTextarea(textarea) {
             textarea.style.height = 'auto';
             textarea.style.height = (textarea.scrollHeight - 4) + 'px';
@@ -85,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 saveTasksToStorage();
             }
         }
-
 
         function checkTruncation(textSpan) {
             return textSpan.offsetWidth < textSpan.scrollWidth;
@@ -114,6 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }else return;
         })
 
+        textSpan.addEventListener('dblclick', () => toggleTaskCompletion(taskElement))
+
         editBtn.addEventListener('click', () =>{
             if(textSpan.style.display = 'none'){
                 toggleEditMode(true);
@@ -123,8 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
 
-
-
         delBtn.addEventListener('click', () => {
             taskElement.classList.add('fade-out');
             taskElement.addEventListener('animationend', () => {
@@ -132,6 +140,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 saveTasksToStorage();
             }, { once: true });
         });
+
+        document.addEventListener('click', function(event) {
+            if (!taskElement.contains(event.target)) {
+                closeTask();
+            }
+        });
+
+
 
         comBtn.addEventListener('click', () => toggleTaskCompletion(taskElement));
 
